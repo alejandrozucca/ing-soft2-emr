@@ -1,6 +1,7 @@
 package emr.ing;
 
-import java.util.Date;
+import java.util.*;
+
 
 public class Main {
 
@@ -15,10 +16,13 @@ public class Main {
 		Colectivo c130 = new Colectivo("Semtur", 130);
 		
 		Date ahora = new Date();
+		Calendar calendar = null;
+		
+		calendar = Calendar.getInstance(TimeZone.getDefault());
 		
 		tarjeta.pagarBoleto(c130, ahora);
 		
-		System.out.println(ahora);
+		System.out.println(calendar.getTime());
 
 	}
 
