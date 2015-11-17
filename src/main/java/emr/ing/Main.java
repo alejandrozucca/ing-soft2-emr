@@ -1,5 +1,6 @@
 package emr.ing;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -15,14 +16,14 @@ public class Main {
 		
 		Colectivo c130 = new Colectivo("Semtur", 130);
 		
-		Date ahora = new Date();
-		Calendar calendar = null;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
 		
-		calendar = Calendar.getInstance(TimeZone.getDefault());
 		
-		tarjeta.pagarBoleto(c130, ahora);
 		
-		System.out.println(calendar.getTime());
+		tarjeta.pagarBoleto(c130, date);
+		
+		System.out.println(dateFormat.format(date)); //2013/10/15 16:16:39
 
 	}
 
