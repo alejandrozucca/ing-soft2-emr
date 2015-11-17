@@ -2,6 +2,7 @@ package emr.ing;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Tarjeta {
 	
@@ -21,6 +22,8 @@ public class Tarjeta {
 	}
 	
 	public boolean pagarBoleto(Colectivo colectivo, Date horario){
+		
+		//Falta implementar el horario del medio boleto
 		
 		Viaje viaje = new Viaje(valorBoleto, colectivo, horario);
 		
@@ -53,12 +56,13 @@ public class Tarjeta {
 	
 	public boolean esTrasbordo(Viaje viaje){
 		
-		if(viajes.size()>0){			
+		if(viajes.size()>1){			
 			Viaje anterior = viajes.get(viajes.size() - 1);	
-			int diferencia = anterior.getHorario().compareTo(viaje.getHorario());
+			long diferencia = anterior.getHorario().getTime() - viaje.getHorario().getTime();
+			long minutos = TimeUnit.MILLISECONDS.toMinutes(diferencia);
 			if(anterior.getColectivo() != viaje.getColectivo() &&			
-			diferencia >= 0 && diferencia <= 1 &&
-			anterior.getMonto() > 2)
+			minutos >= 0 && minutos <= 1 )
+			//Falta agregar condicion para que trasbordo sea el unico de la hora
 				return true;				
 		}
 		
